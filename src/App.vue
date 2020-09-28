@@ -2,11 +2,11 @@
   <div id="app">
     <nav class="navbar shadow-sm navbar-expand navbar-light bg-light justify-content-center fixed-top" style="margin-top: 0px;">
       <div class="container justify-content-between">
-        <a class="navbar-brand" style="color: red;" href="/">简书</a>
+        <router-link class="navbar-brand" style="color: red;" to="/">简书</router-link>
 
 
 
-        <form class="form-inline mr-3 action="http://www.baidu.com/baidu">
+        <form class="form-inline mr-3" action="http://www.baidu.com/baidu">
           <input class="form-control mr-2" placeholder="百度一下" name='word' type="text" autocomplete="off">
           <button class="btn btn-outline-success my-1" type="submit">搜索</button>
         </form>

@@ -1,5 +1,6 @@
 <template>
   <div class="row">
+    
     <div class="col-7">
       <div v-for="post,index in posts">
         <h5 v-html="post.topic" class="font-weight-bold"></h5>
@@ -48,8 +49,9 @@
     data() {
       return {
         posts: [],
-        page: Math.floor(Math.random() * 4 + 1),
+        page: Math.floor(Math.random() * 3 + 1),
         girls: {},
+        girl:'',
       }
     },
     computed: {
@@ -63,14 +65,27 @@
         return moment(time).fromNow();
       }
     },
+    created() {
+            //在页面加载时读取sessionStorage里的状态信息
+            if (sessionStorage.getItem("store")) {
+                this.$store.replaceState(Object.assign({}, this.$store.state, JSON.parse(sessionStorage.getItem("store"))))
+            }
+
+            //在页面刷新时将vuex里的信息保存到sessionStorage里
+            window.addEventListener("beforeunload", () => {
+                sessionStorage.setItem("store", JSON.stringify(this.$store.state))
+            })
+        },
 
 
 
 
     mounted: function () {
       axios.get('/api/v1/posts').then(response => {
-        this.posts = response.data.posts.reverse()
-        this.$store.state.posts = this.posts
+        
+        this.$store.state.posts = response.data.posts.reverse()
+        this.posts=this.$store.state.posts
+
       });
       axios.get(`https://gank.io/api/v2/data/category/Girl/type/Girl/page/${this.page}/count/30`).then(response => {
         this.girls = response.data.data.reverse()

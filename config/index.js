@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api':{
-        target:'http://www.gaocode.top',
+        target:'http://www.gaocode.top:80',
         changeOrigin:true,
         pathRewrite:{
           '^/api':'/api'
@@ -52,7 +52,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps

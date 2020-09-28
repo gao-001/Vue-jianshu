@@ -16,7 +16,7 @@
         name: 'Post',
         data() {
             return {
-                post: {},
+                post: this.$store.state.posts[this.$route.params.id],
 
             }
         },
@@ -34,18 +34,8 @@
         mounted() {
             this.post = this.$store.state.posts[this.$route.params.id]
         },
-        methods: {
-            post: function () {
-                return this.posts[this.$route.params.id]
-            }
-        },
+
+
     }
 </script>
 
-<style>
-    pre {
-
-        word-wrap: break-word;
-        word-break: break-all;
-    }
-</style>
